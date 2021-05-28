@@ -13,13 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopCongNgheTaiQuang">
-        <activity android:name="com.example.shopbangiaytaiquang.activity.GioHang"></activity>
-        <activity android:name="com.example.shopbangiaytaiquang.activity.ChiTietSanPham" />
-        <activity android:name="com.example.shopbangiaytaiquang.activity.NikeActivity" />
-        <activity android:name="com.example.shopbangiaytaiquang.activity.ThongTinActivity" />
-        <activity android:name="com.example.shopbangiaytaiquang.activity.LienHeActivity" />
-        <activity android:name="com.example.shopbangiaytaiquang.activity.ConverseActivity" />
-        <activity android:name="com.example.shopbangiaytaiquang.activity.MainActivity">
+        <activity android:name=".activity.ThongTinThanhToan"></activity>
+        <activity android:name=".activity.GioHang" />
+        <activity android:name=".activity.ChiTietSanPham" />
+        <activity android:name=".activity.NikeActivity" />
+        <activity android:name=".activity.ThongTinActivity" />
+        <activity android:name=".activity.LienHeActivity" />
+        <activity android:name=".activity.ConverseActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

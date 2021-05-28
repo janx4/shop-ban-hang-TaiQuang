@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.shopbangiaytaiquang.R;
 import com.example.shopbangiaytaiquang.adapter.AdapterGioHang;
+import com.example.shopbangiaytaiquang.ultil.CheckConnection;
 
 import java.text.DecimalFormat;
 
@@ -44,7 +46,25 @@ public class GioHang extends AppCompatActivity {
     }
 
     private void EventButton() {
+        buttonTiepTucMua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        buttonThanhToan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MainActivity.mangGioHang.size() > 0){
+                    Intent intent = new Intent(getApplicationContext(), ThongTinThanhToan.class);
+                    startActivity(intent);
+                } else {
+                    CheckConnection.ShowToastShort(getApplicationContext(), "Giỏ hàng của bạn đang trống!");
+                }
+            }
+        });
     }
 
     private void CatchOnItemListView() {

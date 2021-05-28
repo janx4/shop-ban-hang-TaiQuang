@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Nếu có kết nối thì
         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
-            CheckConnection.ShowToastShort(getApplicationContext(), "Khởi tạo kết nối internet!");
+//            CheckConnection.ShowToastShort(getApplicationContext(), "Kết nối thành công!");
             ActionBar();
             ActionViewFlipper();
             CatchEventMenu();
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         mangLoaiSP.add(1, new LoaiSanPham(1, "Giày Converse", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
         mangLoaiSP.add(2, new LoaiSanPham(2, "Giày Nike", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
         mangLoaiSP.add(3, new LoaiSanPham(3, "Thông tin", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
-        mangLoaiSP.add(4, new LoaiSanPham(4, "Liên hệ", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
+        mangLoaiSP.add(4, new LoaiSanPham(4, "Vị trí cửa hàng", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
         adapterLoaiSP = new AdapterLoaiSP(mangLoaiSP, getApplicationContext());
         listViewTrangChu.setAdapter(adapterLoaiSP);
 
