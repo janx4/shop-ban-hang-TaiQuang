@@ -1,4 +1,4 @@
-package com.example.shopcongnghetaiquang.model;
+package com.example.shopbangiaytaiquang.model;
 
 import java.io.Serializable;
 

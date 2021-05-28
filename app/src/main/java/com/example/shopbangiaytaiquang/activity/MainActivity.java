@@ -1,8 +1,10 @@
-package com.example.shopcongnghetaiquang.activity;
+package com.example.shopbangiaytaiquang.activity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -12,6 +14,7 @@ import android.widget.ListView;
 
 import android.widget.ViewFlipper;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -25,12 +28,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.shopcongnghetaiquang.R;
-import com.example.shopcongnghetaiquang.adapter.AdapterLoaiSP;
-import com.example.shopcongnghetaiquang.adapter.AdapterSanPham;
-import com.example.shopcongnghetaiquang.model.LoaiSanPham;
-import com.example.shopcongnghetaiquang.model.SanPham;
-import com.example.shopcongnghetaiquang.ultil.CheckConnection;
+import com.example.shopbangiaytaiquang.R;
+import com.example.shopbangiaytaiquang.adapter.AdapterLoaiSP;
+import com.example.shopbangiaytaiquang.adapter.AdapterSanPham;
+import com.example.shopbangiaytaiquang.model.GioHang;
+import com.example.shopbangiaytaiquang.model.LoaiSanPham;
+import com.example.shopbangiaytaiquang.model.SanPham;
+import com.example.shopbangiaytaiquang.ultil.CheckConnection;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -49,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<LoaiSanPham> mangLoaiSP;
     ArrayList<SanPham> mangSanPham;
+
+    // Mảng toàn cục chứa thông tin giỏ hàng
+    public static ArrayList<GioHang> mangGioHang;
 
     int id = 0;
     String tenLoaiSP = "";
@@ -73,6 +80,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Gắn biểu tượng giỏ hàng lên thanh toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menugiohang, menu);
+        return true;
+    }
+    // Bắt sự kiện nhấn vào biểu tượng giỏ hàng
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent = new Intent(getApplicationContext(), com.example.shopbangiaytaiquang.activity.GioHang.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void CatchEventMenu() {
         listViewTrangChu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent = new Intent(MainActivity.this, DienThoaiActivity.class);
+                            Intent intent = new Intent(MainActivity.this, ConverseActivity.class);
                             intent.putExtra("dataSanPham", mangSanPham);
                             startActivity(intent);
                         } else {
@@ -99,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent = new Intent(MainActivity.this, LaptopActivity.class);
+                            Intent intent = new Intent(MainActivity.this, NikeActivity.class);
                             intent.putExtra("dataSanPham", mangSanPham);
                             startActivity(intent);
                         } else {
@@ -206,21 +230,25 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         mangLoaiSP = new ArrayList<>();
         mangLoaiSP.add(0, new LoaiSanPham(0, "Trang Chủ", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
-        mangLoaiSP.add(1, new LoaiSanPham(1, "Điện thoại", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
-        mangLoaiSP.add(2, new LoaiSanPham(2, "Máy tính", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
+        mangLoaiSP.add(1, new LoaiSanPham(1, "Giày Converse", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
+        mangLoaiSP.add(2, new LoaiSanPham(2, "Giày Nike", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
         mangLoaiSP.add(3, new LoaiSanPham(3, "Thông tin", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
         mangLoaiSP.add(4, new LoaiSanPham(4, "Liên hệ", "https://toppng.com/uploads/preview/blue-home-page-icon-png-icon-png-button-home-11563017221o3yywd2nlp.png"));
         adapterLoaiSP = new AdapterLoaiSP(mangLoaiSP, getApplicationContext());
         listViewTrangChu.setAdapter(adapterLoaiSP);
 
         mangSanPham = new ArrayList<>();
-
         adapterSanPham = new AdapterSanPham(getApplicationContext(), mangSanPham);
+
         recyclerViewTrangChu.setHasFixedSize(true);
         recyclerViewTrangChu.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         recyclerViewTrangChu.setAdapter(adapterSanPham);
 
         addSanPham(mangSanPham);
+        if (mangGioHang != null){
 
+        } else {
+            mangGioHang = new ArrayList<>();
+        }
     }
 }

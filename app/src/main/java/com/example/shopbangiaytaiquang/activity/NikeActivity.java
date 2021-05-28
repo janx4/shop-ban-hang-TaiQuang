@@ -1,5 +1,6 @@
-package com.example.shopcongnghetaiquang.activity;
+package com.example.shopbangiaytaiquang.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,18 +8,20 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.shopcongnghetaiquang.R;
-import com.example.shopcongnghetaiquang.adapter.AdapterLaptop;
-import com.example.shopcongnghetaiquang.model.SanPham;
-import com.example.shopcongnghetaiquang.ultil.CheckConnection;
+import com.example.shopbangiaytaiquang.R;
+import com.example.shopbangiaytaiquang.adapter.AdapterNike;
+import com.example.shopbangiaytaiquang.model.SanPham;
+import com.example.shopbangiaytaiquang.ultil.CheckConnection;
 
 import java.util.ArrayList;
 
-public class LaptopActivity extends AppCompatActivity {
+public class NikeActivity extends AppCompatActivity {
     Toolbar toolbarLaptop;
     ListView listViewLaptop;
     ArrayList<SanPham> mangLaptop = new ArrayList<>();
@@ -27,7 +30,7 @@ public class LaptopActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_laptop);
+        setContentView(R.layout.activity_nike);
         Anhxa();
         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
             FetchDataLapTop();
@@ -41,7 +44,22 @@ public class LaptopActivity extends AppCompatActivity {
 
     }
 
-
+    // Gắn biểu tượng giỏ hàng lên thanh toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menugiohang, menu);
+        return true;
+    }
+    // Bắt sự kiện nhấn vào biểu tượng giỏ hàng
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent = new Intent(getApplicationContext(), com.example.shopbangiaytaiquang.activity.GioHang.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void ShowProducts(ArrayList<SanPham> mangLapTop) {
         // Lọc các sản phẩm là laptop
@@ -52,8 +70,8 @@ public class LaptopActivity extends AppCompatActivity {
             }
         }
         // Hiển thị sản phẩm
-        AdapterLaptop adapterLaptop = new AdapterLaptop(getApplicationContext(), mangLapTop);
-        listViewLaptop.setAdapter(adapterLaptop);
+        AdapterNike adapterNike = new AdapterNike(getApplicationContext(), mangLapTop);
+        listViewLaptop.setAdapter(adapterNike);
 
         // Lắng nghe sự kiện click vào sản phẩm -> Thông tin chi tiết sản phẩm
         listViewLaptop.setOnItemClickListener(new AdapterView.OnItemClickListener() {

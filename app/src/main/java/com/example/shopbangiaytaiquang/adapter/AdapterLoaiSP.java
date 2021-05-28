@@ -1,4 +1,4 @@
-package com.example.shopcongnghetaiquang.adapter;
+package com.example.shopbangiaytaiquang.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.shopcongnghetaiquang.R;
-import com.example.shopcongnghetaiquang.model.LoaiSanPham;
+import com.example.shopbangiaytaiquang.R;
+import com.example.shopbangiaytaiquang.model.LoaiSanPham;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

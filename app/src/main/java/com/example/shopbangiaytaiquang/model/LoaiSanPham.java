@@ -1,4 +1,4 @@
-package com.example.shopcongnghetaiquang.model;
+package com.example.shopbangiaytaiquang.model;
 
 // Khai báo 1 khung đối tượng loại sản phẩm (constructor, getter, setter)
 

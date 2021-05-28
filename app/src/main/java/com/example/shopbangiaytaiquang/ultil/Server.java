@@ -1,4 +1,4 @@
-package com.example.shopcongnghetaiquang.ultil;
+package com.example.shopbangiaytaiquang.ultil;
 
 public class Server {
     public static String hostName = "localhost";

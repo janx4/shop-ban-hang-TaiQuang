@@ -1,10 +1,10 @@
-package com.example.shopcongnghetaiquang.activity;
+package com.example.shopbangiaytaiquang.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.shopcongnghetaiquang.R;
+import com.example.shopbangiaytaiquang.R;
 
 public class LienHeActivity extends AppCompatActivity {
 

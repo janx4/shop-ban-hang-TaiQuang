@@ -1,24 +1,27 @@
-package com.example.shopcongnghetaiquang.activity;
+package com.example.shopbangiaytaiquang.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.shopcongnghetaiquang.R;
-import com.example.shopcongnghetaiquang.adapter.AdapterDienThoai;
-import com.example.shopcongnghetaiquang.model.SanPham;
-import com.example.shopcongnghetaiquang.ultil.CheckConnection;
+import com.example.shopbangiaytaiquang.R;
+import com.example.shopbangiaytaiquang.adapter.AdapterConverse;
+import com.example.shopbangiaytaiquang.model.SanPham;
+import com.example.shopbangiaytaiquang.ultil.CheckConnection;
 
 import java.util.ArrayList;
 
-public class DienThoaiActivity extends AppCompatActivity {
+public class ConverseActivity extends AppCompatActivity {
     Toolbar toolbarDienThoai;
     ListView listViewDienThoai;
     ArrayList<SanPham> mangDienThoai = new ArrayList<>();
@@ -28,7 +31,7 @@ public class DienThoaiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dien_thoai);
+        setContentView(R.layout.activity_converse);
         Anhxa();
         if (CheckConnection.haveNetworkConnection(getApplicationContext())){
             FetchDataDienThoai();
@@ -38,8 +41,23 @@ public class DienThoaiActivity extends AppCompatActivity {
             CheckConnection.ShowToastShort(getApplicationContext(), "Không có kết nối internet!");
             finish();
         }
+    }
 
-
+    // Gắn biểu tượng giỏ hàng lên thanh toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menugiohang, menu);
+        return true;
+    }
+    // Bắt sự kiện nhấn vào biểu tượng giỏ hàng
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent = new Intent(getApplicationContext(), com.example.shopbangiaytaiquang.activity.GioHang.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void ShowProducts(ArrayList<SanPham> mangDienThoai) {
@@ -50,8 +68,10 @@ public class DienThoaiActivity extends AppCompatActivity {
                 i--;
             }
         }
+
+
         // Hiển thị sản phẩm
-        AdapterDienThoai adapterDienThoai = new AdapterDienThoai(getApplicationContext(), mangDienThoai);
+        AdapterConverse adapterDienThoai = new AdapterConverse(getApplicationContext(), mangDienThoai);
         listViewDienThoai.setAdapter(adapterDienThoai);
 
         listViewDienThoai.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,6 +79,7 @@ public class DienThoaiActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), ChiTietSanPham.class);
                 intent.putExtra("detailproduct", mangDienThoai.get(position));
+
                 startActivity(intent);
             }
         });

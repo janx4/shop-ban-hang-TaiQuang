@@ -5,16 +5,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LaptopActivity">
+    tools:context=".activity.ConverseActivity">
     <androidx.appcompat.widget.Toolbar
         android:background="#ffd600"
-        app:title="Laptop"
-        android:id="@+id/toolbarlaptop"
+        app:title="Điện thoại"
+        android:id="@+id/toolbardienthoai"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
     </androidx.appcompat.widget.Toolbar>
     <ListView
-        android:id="@+id/listviewlaptop"
+        android:id="@+id/listviewdientthoai"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>

@@ -1,4 +1,4 @@
-package com.example.shopcongnghetaiquang.adapter;
+package com.example.shopbangiaytaiquang.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -9,18 +9,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.shopcongnghetaiquang.R;
-import com.example.shopcongnghetaiquang.model.SanPham;
+import com.example.shopbangiaytaiquang.R;
+import com.example.shopbangiaytaiquang.model.SanPham;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class AdapterLaptop extends BaseAdapter {
+public class AdapterNike extends BaseAdapter {
     Context context;
     ArrayList<SanPham> arrayLaptop;
 
-    public AdapterLaptop(Context context, ArrayList<SanPham> arrayLaptop) {
+    public AdapterNike(Context context, ArrayList<SanPham> arrayLaptop) {
         this.context = context;
         this.arrayLaptop = arrayLaptop;
     }

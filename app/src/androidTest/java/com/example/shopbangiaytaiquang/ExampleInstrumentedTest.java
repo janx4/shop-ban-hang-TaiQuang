@@ -1,4 +1,4 @@
-package com.example.shopcongnghetaiquang;
+package com.example.shopbangiaytaiquang;
 
 import android.content.Context;
 
